@@ -3,6 +3,7 @@ package com.evenement.newsweb.model;
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue
+    @Column(name = "id_user")
     private Long id;
     private String firstName;
     private String lastName;
@@ -19,20 +21,22 @@ public class User {
     private String password;
     @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private Set<UserRole> userRole = new HashSet <>();
-    @OneToMany(fetch = FetchType.EAGER)
-    private News news;
-    @OneToMany(fetch = FetchType.EAGER)
-    private Comment comment;
+    @OneToMany(mappedBy = "user")
+    private List<News> news;
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comment;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String username, String password, Set <UserRole> userRole) {
+    public User(String firstName, String lastName, String username, String password, Set <UserRole> userRole, List <News> news, List <Comment> comment) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.userRole = userRole;
+        this.news = news;
+        this.comment = comment;
     }
 
     public Long getId() {
@@ -83,23 +87,20 @@ public class User {
         this.userRole = userRole;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return Objects.equals(getId(), user.getId()) &&
-                Objects.equals(getFirstName(), user.getFirstName()) &&
-                Objects.equals(getLastName(), user.getLastName()) &&
-                Objects.equals(getUsername(), user.getUsername()) &&
-                Objects.equals(getPassword(), user.getPassword()) &&
-                Objects.equals(getUserRole(), user.getUserRole());
+    public List <News> getNews() {
+        return news;
     }
 
-    @Override
-    public int hashCode() {
+    public void setNews(List <News> news) {
+        this.news = news;
+    }
 
-        return Objects.hash(getId(), getFirstName(), getLastName(), getUsername(), getPassword(), getUserRole());
+    public List <Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(List <Comment> comment) {
+        this.comment = comment;
     }
 
     @Override
@@ -111,6 +112,8 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", userRole=" + userRole +
+                ", news=" + news +
+                ", comment=" + comment +
                 '}';
     }
 }

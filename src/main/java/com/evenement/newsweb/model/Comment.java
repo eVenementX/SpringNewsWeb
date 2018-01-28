@@ -11,10 +11,7 @@ public class Comment {
     private Long id;
     @NotEmpty
     private String content;
-    @NotEmpty
-    @OneToOne
-    private User user;
-    @NotEmpty
     @ManyToOne
-    private News news;
+    @JoinColumn(name = "user_id")
+    private User user;
 }
