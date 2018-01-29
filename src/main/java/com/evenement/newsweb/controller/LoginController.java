@@ -6,23 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
 @Controller
 public class LoginController {
     private UserRepository userRepository;
-    @Autowired
     LoginController(UserRepository userRepository)
     {
         this.userRepository=userRepository;
     }
-    @GetMapping("/login")
-    public void loggedUserObject(Principal principal, Model model)
+    @Autowired
+            @GetMapping("/login")
+            public String login()
     {
-        String username = principal.getName();
-        User user = userRepository.findByUsername(username);
-        model.addAttribute("user",user);
-
+        return "login";
     }
+   @RequestMapping("/login")
+    public void createUserObject(Principal principal, Model model)
+   {
+       String username = principal.getName();
+      User user = userRepository.findByUsername(username);
+       model.addAttribute("user",user);
+   }
+
 }

@@ -22,13 +22,13 @@ public class RegisterController {
     {
         this.userRepository = userRepository;
     }
-    @GetMapping
+    @GetMapping("/register")
     public String createUserObject(Model model)
     {
         model.addAttribute("userObject", new User());
         return "register";
     }
-    @PostMapping
+    @PostMapping("/register")
     public String registerUser(@ModelAttribute @Valid User user, BindingResult bindResult )
     {
         if (bindResult.hasErrors())
