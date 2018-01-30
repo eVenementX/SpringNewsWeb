@@ -19,6 +19,11 @@ public class LoginController {
     {
         this.userRepository=userRepository;
     }
+    @RequestMapping("/login")
+    public String login()
+    {
+        return "login";
+    }
 
     @RequestMapping("/")
     public String dashboardPageList(@AuthenticationPrincipal UserDetails currentUser ) {
