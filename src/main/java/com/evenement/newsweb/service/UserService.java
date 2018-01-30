@@ -1,16 +1,17 @@
 package com.evenement.newsweb.service;
 
+
 import com.evenement.newsweb.model.User;
-
 import com.evenement.newsweb.model.UserRole;
-
 import com.evenement.newsweb.repository.UserRepository;
 import com.evenement.newsweb.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class UserService {
+
     private static final String DEFAULT_ROLE = "ROLE_USER";
     private UserRepository userRepository;
     private UserRoleRepository roleRepository;
@@ -32,4 +33,3 @@ public class UserService {
     }
 
 }
-

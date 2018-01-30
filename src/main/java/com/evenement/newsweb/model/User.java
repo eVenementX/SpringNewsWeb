@@ -4,14 +4,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+
 import java.util.Set;
 
 @Entity
 public class User {
     @Id
-    @GeneratedValue
-    @Column(name = "id_user")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
@@ -19,7 +18,7 @@ public class User {
     private String username;
     @NotEmpty
     private String password;
-    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<UserRole> userRole = new HashSet <>();
     @OneToMany(mappedBy = "user")
     private List<News> news;

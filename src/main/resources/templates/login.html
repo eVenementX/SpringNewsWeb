@@ -1,108 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"></meta>
-    <title><html lang="en"><head>
-        <meta charset="utf-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
-        <meta name="description" content=""></meta>
-        <meta name="author" content=""></meta>
-        <link rel="icon" href="../../favicon.ico"></link>
-        <title>Off Canvas Template for Bootstrap</title>
-        <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"></link>
-        <link href="offcanvas.css" rel="stylesheet"></link>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"></link>
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    </head>
-<body>
-<nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">Navbar</a>
+    <title>Weekop - logowanie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/styles.css" type="text/css" rel="stylesheet">
+</head>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search"></input>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+<body>
+
+<nav class = "navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <a href="#" class="navbar-brand">Weekop</a>
+
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+            <span class="glyphicon glyphicon-list"></span>
+        </button>
+
+        <div class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#">Główna</a></li>
+                <li><a href="#">Dodaj</a></li>
+                <li><a href="#">Zaloguj się</a></li>
+            </ul>
+        </div>
+
     </div>
 </nav>
 
 <div class="container">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <form class="form-signin" name="f" th:action="@{/login}" method="post">
+            <fieldset>
+                <div th:if="${param.error}" class="alert alert-error">
+                    Invalid username and password.
+                </div>
 
-
-    <div class="row align-items-center justify-content-center">
-        <div class="col-12 col-md-4">
-
-            <div class="jumbotron">
-                <h1>Zaloguj się !</h1>
-            </div>
-            <div class="row">
-                <div class="container" tiles:fragment="content"  >
-
-                    <form class="form-signin" name="f" th:action="@{/login}" method="post">
-                        <fieldset>
-                            <div th:if="${param.error}" class="alert alert-error">
-                                Invalid username and password.
-                            </div>
-
-                            <input type="text" id="username" name="username" class="form-control" placeholder="Login"/>
-                            <input type="password" id="password" name="password" class="form-control" placeholder="Hasło"/>
-                            <div class="form-actions">
-                                <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj się</button>
-                            </div>
-                        </fieldset>
-                    </form>
-
-                </div> <!-- /container -->
-
-            </div><!--/row-->
-        </div><!--/span-->
+                <input type="text" id="username" name="username" class="form-control" placeholder="Login"/>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Hasło"/>
+                <div class="form-actions">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj się</button>
+                </div>
+            </fieldset>
+        </form>
     </div>
-
-
-
-    <hr></hr>
-
-    <footer>
-        <p>© Company 2017</p>
-    </footer>
-
 </div>
 
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="offcanvas.js"></script>
+<footer class="footer">
+    <div class="container">
+        <p class="navbar-text">Weekop - developed by <a href="http://javastart.pl">JavaStart.pl</a></p>
+    </div>
+</footer>
 
-
-</body></html></title>
-</head>
-<body>
-
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="resources/js/bootstrap.js"></script>
 </body>
 </html>
+
