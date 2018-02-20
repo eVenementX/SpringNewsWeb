@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 
 @Controller
-public class RegisterController {
-    private UserRepository userRepository;
+public class RegisterControllerMVC {
+
     private UserService userService;
     @Autowired
-
-    RegisterController( UserService userService)
+    RegisterControllerMVC(UserService userService)
     {
         this.userService = userService;
     }
@@ -40,7 +39,7 @@ public class RegisterController {
         else
         {
            userService.addWithDefaultRole(user);
-            return "index";
+            return "redirect:/";
         }
 
     }

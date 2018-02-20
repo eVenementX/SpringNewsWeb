@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${singleNews != null}">
+<h1>All cities:</h1>
+<table border="1">
+    <tr>
+        <th>Tytuł</th>
+        <th>Tresc</th>
+    </tr>
+    <tr>
+
+        <td th:text="${singleNews.title}"></td>
+        <td th:text="${singleNews.description}"></td>
+
+    </tr>
+</table>
+</div>
+
+</body>
+</html>

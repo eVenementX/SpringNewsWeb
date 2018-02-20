@@ -33,17 +33,14 @@
 
 <div class="container">
     <div class="col-sm-6 col-md-4 col-md-offset-4">
-        <form class="form-signin" name="f" th:action="@{/login}" method="post">
+        <form class="form-signin" th:action="@{/createNews}" th:object="${newsModel}" method="post">
             <fieldset>
-                <h2 class="form-signin-heading">Zaloguj się</h2>
-                <div th:if="${param.error}" class="alert alert-error">
-                    Invalid username and password.
-                </div>
-
-                <input type="text" id="username" name="username" class="form-control" placeholder="Login"/>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Hasło"/>
+                <h2 class="form-signin-heading">Dodaj Newsa</h2>
+                <input type="text" th:field="*{title}" class="form-control" placeholder="Tytuł"/>
+                <input type="text" th:field="*{description}" class="form-control" placeholder="Opis"/>
+                <input type="text" th:field="*{content}" class="form-control" placeholder="Treść"/>
                 <div class="form-actions">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj się</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Dodaj </button>
                 </div>
             </fieldset>
         </form>
@@ -52,10 +49,11 @@
 
 <footer class="footer">
     <div class="container">
-
     </div>
 </footer>
 
 </body>
 </html>
+
+
 

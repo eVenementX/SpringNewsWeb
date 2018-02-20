@@ -3,6 +3,7 @@ package com.evenement.newsweb.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -12,25 +13,27 @@ public class News {
     @Column(name = "id_news")
     private Long id;
     @NotEmpty
+
     private String title;
     @NotEmpty
     private String description;
     @NotEmpty
     private String content;
+    private Timestamp timestamp;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "news_id", referencedColumnName="id_news")
+    @OneToMany(mappedBy = "news")
     private List<Comment> comment;
 
     public News() {
     }
 
-    public News(String title, String description, String content, User user, List <Comment> comment) {
+    public News(String title, String description, String content, Timestamp timestamp, User user, List <Comment> comment) {
         this.title = title;
         this.description = description;
         this.content = content;
+        this.timestamp = timestamp;
         this.user = user;
         this.comment = comment;
     }
@@ -82,7 +85,13 @@ public class News {
     public void setComment(List <Comment> comment) {
         this.comment = comment;
     }
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
 
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
     @Override
     public String toString() {
         return "News{" +
@@ -92,6 +101,9 @@ public class News {
                 ", content='" + content + '\'' +
                 ", user=" + user +
                 ", comment=" + comment +
+                ", timestamp=" + timestamp +
                 '}';
     }
+
+
 }
